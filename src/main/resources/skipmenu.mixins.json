@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "com.prabhas.skipmenu.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "MinecraftMixin",
+    {
+      "mixin": "WebosrSignInBridgeMixin",
+      "targets": ["com.moonsworth.lunar.client.IIICIHIRHRHOIIOICIOHRHRRHICIHC.ORCCOHCOCROCRCRIRHOIIHOCHCHHRH.ROHIRIOHCIROCRROIRHCIHOCIRORIR.IROIRHHRRCOCCHOOCOHHORCHHCHOCO.ORCCOHCOCROCRCRIRHOIIHOCHCHHRH.IROIRHHRRCOCCHOOCOHHORCHHCHOCO"]
+    },
+    {
+      "mixin": "AccountGateMixin",
+      "targets": ["com.moonsworth.lunar.client.ROCCORCCCIORIHHHHIRHIORRCRHIRR.ROHIRIOHCIROCRROIRHCIHOCIRORIR.IROIRHHRRCOCCHOOCOHHORCHHCHOCO"]
+    }
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

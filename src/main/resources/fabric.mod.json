@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "skipmenu",
+  "version": "${version}",
+  "name": "Skip Menu",
+  "description": "Offline login with a Lunar account popup (Offline/Microsoft) and a stub custom module (X).",
+  "authors": [
+    "prabhas"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.prabhas.skipmenu.SkipMenuClient"
+    ]
+  },
+  "mixins": [
+    "skipmenu.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}
