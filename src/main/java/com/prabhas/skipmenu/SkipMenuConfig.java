@@ -16,7 +16,10 @@ public final class SkipMenuConfig {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
 	public String offlineUsername = "123";
-	public boolean moduleX = true;
+	public boolean moduleNametag = false;
+	public boolean nametagShowIcon = true;
+	public boolean nametagIconAll = false;
+	public int nametagIconSize = 12;
 
 	private SkipMenuConfig() {
 	}

@@ -13,10 +13,17 @@ base {
 repositories {
 }
 
+sourceSets {
+	stubs
+}
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Obfuscated Lunar target classes (compile-time stubs only; not shipped).
+	compileOnly sourceSets.stubs.output
 }
 
 processResources {

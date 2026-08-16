@@ -1,42 +1,33 @@
-# SkipMenu — Lunar Client 1.21.11 Fabric mod
+# Lunar4Offline
 
-Offline login manager + stub custom module for Lunar Client, built with Fabric Loader (no Fabric API).
+**Login freely on Lunar Client.** Lunar4Offline is a client-side Fabric mod for Minecraft **1.21.11** on Lunar Client that lets you log in as an offline player, adds a Lunar-styled account popup (Offline / Microsoft), and gives you a module system with nametag indicators.
+
+![Lunar4Offline](logo.png)
 
 ## Features
 
-- **Account popup.** Whenever Lunar triggers a sign-in (top-left "add account" or any
-  login push), the webosr sign-in **push is intercepted** (`WebosrSignInBridgeMixin`,
-  method `ORIICIHIHHHIOHHHIHRHIOHHIHHHIR()`) and replaced with an in-game popup offering
-  **Offline** or **Microsoft**:
-  - `Offline` → username screen; applies a dynamic offline `Minecraft.User` (uuid derived
-    from `OfflinePlayer:<name>`, token `0`) via `OfflineLogin`.
-  - `Microsoft` → re-invokes the original Lunar sign-in (`@Invoker`, webosr overlay).
-- **Gate bypass.** `AccountGateMixin` forces Lunar's is-logged-in boolean true so the
-  sign-in overlay is not auto-pushed at startup (no popup spam); manual triggers still
-  reach the popup.
-- **Stub module.** `X` (id `x`) registered via `ModuleManager` — placeholder for future
-  modules that will be surfaced in Lunar's UI. No behavior yet.
-- **Config.** Persisted to `~/.lunarclient/offline/multiver/skipmenu-config.json`
-  (offline username + module toggles).
+- **Offline login.** Replace Lunar's sign-in screen with an in-game popup. Log in as any offline username — no Microsoft account needed.
+- **Account popup.** Whenever Lunar triggers a sign-in, the push is intercepted and you get a clean choice: **Offline** or **Microsoft**.
+- **Microsoft fallback.** Still want a real account? The popup re-invokes Lunar's original sign-in overlay.
+- **No startup popup spam.** The auto-push at launch is suppressed; manual triggers still open the popup.
+- **Nametag module.** Toggle a lunar icon shown above players (offline player only, or everyone), with configurable size (8 / 12 / 16).
+- **Config file.** Settings are persisted to `~/.lunarclient/offline/multiver/skipmenu-config.json`.
 
-## Target classes (Lunar 3.7.15, MC 1.21.11, verified from `lunar.jar`)
+## Installation
 
-- Sign-in push (redirected):
-  `com.moonsworth.lunar.client.IIICIHIRHRHOIIOICIOHRHRRHICIHC.ORCCOHCOCROCRCRIRHOIIHOCHCHHRH.ROHIRIOHCIROCRROIRHCIHOCIRORIR.IROIRHHRRCOCCHOOCOHHORCHHCHOCO.ORCCOHCOCROCRCRIRHOIIHOCHCHHRH.IROIRHHRRCOCCHOOCOHHORCHHCHOCO`
-  → `public static void ORIICIHIHHHIOHHHIHRHIOHHIHHHIR()`
-- Account gate (forced true):
-  `com.moonsworth.lunar.client.ROCCORCCCIORIHHHHIRHIORRCRHIRR.ROHIRIOHCIROCRROIRHCIHOCIRORIR.IROIRHHRRCOCCHOOCOHHORCHHCHOCO`
-  → `public boolean RIIHHCOICHHIOHRCHROIOHOOIIHICO()`
+1. Install [Fabric Loader](https://fabricmc.net/use/) for **1.21.11**.
+2. Copy `lunar4offline-1.0.0.jar` into `~/.lunarclient/profiles/1.21/mods/fabric-1.21.11/`.
+3. Launch the **1.21** (Fabric) Lunar profile and open the account popup from the top-left.
 
-Targets are declared as string `targets` in `skipmenu.mixins.json` because the obfuscated
-package/class names collide with other classes (javac cannot import them), and the classes
-are loaded by Lunar's runtime classloader from `lunar.jar`.
+> No Fabric API is required.
 
-## Build
+## Requirements
 
-```
-./gradlew build
-```
+- Minecraft **1.21.11**
+- Fabric Loader **>= 0.19.3**
+- Java **21**
+- Lunar Client
 
-Deploy `build/libs/skipmenu-1.0.0.jar` to the profile mods folder(s), e.g.
-`~/.lunarclient/profiles/1.21/mods/` and `fabric-1.21.11/`.
+## License
+
+MIT — see [LICENSE](LICENSE).

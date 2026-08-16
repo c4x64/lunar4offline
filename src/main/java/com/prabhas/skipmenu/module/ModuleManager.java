@@ -10,7 +10,11 @@ public final class ModuleManager {
 	private final List<Module> modules = new ArrayList<>();
 
 	public ModuleManager() {
-		modules.add(new Module("x", "X", true));
+		Module nametag = new Module("nametag", "Nametag", false)
+			.addSetting(new Setting("showIcon", "Show icon for offline player", Setting.Type.BOOLEAN, "true"))
+			.addSetting(new Setting("iconAll", "Show icon for every player", Setting.Type.BOOLEAN, "false"))
+			.addSetting(new Setting("iconSize", "Icon size", Setting.Type.TEXT, "12"));
+		modules.add(nametag);
 	}
 
 	public List<Module> getModules() {
@@ -27,16 +31,43 @@ public final class ModuleManager {
 	}
 
 	public void loadFromConfig(SkipMenuConfig config) {
-		Module x = get("x");
-		if (x != null) {
-			x.enabled = config.moduleX;
-		}
+		setEnabled("nametag", config.moduleNametag);
+		setSetting("nametag", "showIcon", String.valueOf(config.nametagShowIcon));
+		setSetting("nametag", "iconAll", String.valueOf(config.nametagIconAll));
+		setSetting("nametag", "iconSize", String.valueOf(config.nametagIconSize));
 	}
 
 	public void saveToConfig(SkipMenuConfig config) {
-		Module x = get("x");
-		if (x != null) {
-			config.moduleX = x.enabled;
+		config.moduleNametag = isEnabled("nametag");
+		config.nametagShowIcon = settingValue("nametag", "showIcon").equals("true");
+		config.nametagIconAll = settingValue("nametag", "iconAll").equals("true");
+		config.nametagIconSize = get("nametag").getSetting("iconSize").asInt(12);
+	}
+
+	private void setEnabled(String id, boolean enabled) {
+		Module module = get(id);
+		if (module != null) {
+			module.enabled = enabled;
 		}
+	}
+
+	private void setSetting(String moduleId, String settingId, String value) {
+		Module module = get(moduleId);
+		if (module != null && module.getSetting(settingId) != null) {
+			module.getSetting(settingId).setValue(value);
+		}
+	}
+
+	private boolean isEnabled(String id) {
+		Module module = get(id);
+		return module != null && module.enabled;
+	}
+
+	private String settingValue(String moduleId, String settingId) {
+		Module module = get(moduleId);
+		if (module == null || module.getSetting(settingId) == null) {
+			return "";
+		}
+		return module.getSetting(settingId).value();
 	}
 }

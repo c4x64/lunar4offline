@@ -1,5 +1,6 @@
 package com.prabhas.skipmenu.mixin;
 
+import com.moonsworth.lunar.client.IIICIHIRHRHOIIOICIOHRHRRHICIHC.ORCCOHCOCROCRCRIRHOIIHOCHCHHRH.ROHIRIOHCIROCRROIRHCIHOCIRORIR.IROIRHHRRCOCCHOOCOHHORCHHCHOCO.ORCCOHCOCROCRCRIRHOIIHOCHCHHRH.IROIRHHRRCOCCHOOCOHHORCHHCHOCO;
 import com.prabhas.skipmenu.gui.AccountChoiceScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -11,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Mixin(IROIRHHRRCOCCHOOCOHHORCHHCHOCO.class)
 public abstract class WebosrSignInBridgeMixin {
 	private static final Logger LOGGER = LoggerFactory.getLogger("skipmenu");
 

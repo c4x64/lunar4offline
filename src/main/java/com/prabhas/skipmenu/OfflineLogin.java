@@ -1,5 +1,6 @@
 package com.prabhas.skipmenu;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.client.User;
 
 import java.nio.charset.StandardCharsets;
@@ -27,5 +28,17 @@ public final class OfflineLogin {
 
 	public static void apply(String name) {
 		username = (name == null || name.isBlank()) ? DEFAULT_NAME : name.trim();
+	}
+
+	public static boolean isLocalProfile(GameProfile profile) {
+		if (profile == null) {
+			return false;
+		}
+		String name = getUsername();
+		if (name != null && name.equals(profile.name())) {
+			return true;
+		}
+		UUID expected = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes(StandardCharsets.UTF_8));
+		return expected.equals(profile.id());
 	}
 }

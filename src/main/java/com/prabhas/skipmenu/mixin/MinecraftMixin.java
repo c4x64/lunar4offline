@@ -1,6 +1,8 @@
 package com.prabhas.skipmenu.mixin;
 
 import com.prabhas.skipmenu.OfflineLogin;
+import com.prabhas.skipmenu.SkipMenuClient;
+import com.prabhas.skipmenu.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.User;
 import org.slf4j.Logger;
@@ -25,8 +27,17 @@ public abstract class MinecraftMixin {
 
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void handleMinecraftInit(CallbackInfo ci) {
+		SkipMenuClient.init();
 		this.user = OfflineLogin.currentUser();
 		LOGGER.info("[SkipMenu] Applied offline user {}", OfflineLogin.getUsername());
+
+		Module nametag = SkipMenuClient.MODULES.get("nametag");
+		LOGGER.info(
+			"[SkipMenu] state: nametagEnabled={} iconAll={} iconSize={}",
+			nametag == null ? "MISSING" : nametag.enabled,
+			nametag == null ? "?" : nametag.getSetting("iconAll").value(),
+			nametag == null ? "?" : nametag.getSetting("iconSize").value()
+		);
 	}
 
 	@Inject(method = "getUser", at = @At("HEAD"), cancellable = true)

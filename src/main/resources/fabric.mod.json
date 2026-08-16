@@ -2,12 +2,15 @@
   "schemaVersion": 1,
   "id": "skipmenu",
   "version": "${version}",
-  "name": "Skip Menu",
-  "description": "Offline login with a Lunar account popup (Offline/Microsoft) and a stub custom module (X).",
+  "name": "Lunar4Offline",
+  "description": "Offline login for Lunar Client with a Lunar-styled account popup (Offline/Microsoft), module toggles and nametag indicators.",
   "authors": [
-    "prabhas"
+    "c4x64"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://modrinth.com/mod/lunar4offline",
+    "sources": "https://github.com/c4x64/lunar4offline"
+  },
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
