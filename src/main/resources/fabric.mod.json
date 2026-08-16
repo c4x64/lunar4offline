@@ -3,7 +3,7 @@
   "id": "skipmenu",
   "version": "${version}",
   "name": "Lunar4Offline",
-  "description": "Offline login for Lunar Client with a Lunar-styled account popup (Offline/Microsoft), module toggles and nametag indicators.",
+  "description": "Replaces Lunar Client's sign-in prompt with a Lunar-styled account menu (offline or Microsoft) and adds optional nametag indicators. No Fabric API required.",
   "authors": [
     "c4x64"
   ],
